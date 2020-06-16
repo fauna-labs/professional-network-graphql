@@ -114,16 +114,28 @@ const getProfilesBySkill = function(skill, toLoad, prevBefore, prevAfter) {
  * Once Login is called, it will return a secret which will be used further on to query.
  */
 const register = function(email, password) {
-  const query = ` ... to be filled in ... `
+  const query = `mutation CallRegister {
+    register (
+      email: "${email}"
+      password: "${password}"
+    )
+    {
+      _id
+    }
+  }`
   return executeQuery(query).then(result => {
     console.log(result)
-
     return result.data.register
   })
 }
 
 const login = async function(email, password) {
-  const query = ` ... to be filled in ... `
+  const query = `mutation CallLogin {
+    login (
+      email: "${email}"
+      password: "${password}"
+    )
+  }`
   return executeQuery(query).then(result => {
     console.log('login result', result)
     secret = result.data.login
