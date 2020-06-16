@@ -12,7 +12,28 @@ const getProfiles = async function(toLoad, prevBefore, prevAfter) {
   }
 
   const query = `
-     ... to be filled in ...
+    query GetProfiles {
+      allProfiles {
+        data {
+          _id
+          name
+          icon
+          skills {
+            data {
+              _id
+              name
+            }
+          }
+          projects
+          {
+            data {
+              _id
+              name
+            }
+          }
+        }
+      }
+    }
   `
   return executeQuery(query).then(result => {
     if(result.errors){
