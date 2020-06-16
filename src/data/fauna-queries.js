@@ -13,7 +13,7 @@ const getProfiles = async function(toLoad, prevBefore, prevAfter) {
 
   const query = `
     query GetProfiles {
-      allProfiles {
+      allProfiles(_size: 6) {
         data {
           _id
           name
