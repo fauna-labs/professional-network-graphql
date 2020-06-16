@@ -58,7 +58,31 @@ const getProfilesBySkill = function(skill, toLoad, prevBefore, prevAfter) {
   }
 
   const query = `
-    ... to be filled in ... 
+  query GetProfilesBySkill {
+    skillsByName(_size: 6, name: "${skill}" ${cursor}){
+      data {
+        profiles { 
+          data { 
+            _id,
+            name,
+            icon,
+            skills {
+              data {
+                _id,
+                name
+              }
+            },
+            projects {
+              data {
+                _id,
+                name,
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   `
 
   return executeQuery(query).then(result => {
