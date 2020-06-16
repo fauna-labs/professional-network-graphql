@@ -1,0 +1,34 @@
+
+type Account {
+  email: String! @unique
+}
+
+type Profile {
+  name: String!
+  icon: String!
+  account: Account! @relation
+  skills: [ Skill ! ] @relation
+  projects: [ Project! ] @relation
+}
+
+type Project {
+  name: String!
+  profile: [ Profile! ] @relation
+}
+
+type Skill {
+  profiles: [ Profile! ] @relation
+  name: String!
+}
+
+type Query {
+  allProfiles: [Profile!]
+  accountsByEmail(email: String!): [Account!]!
+  skillsByName(name: String!): [Skill!]!
+}
+
+type Mutation {
+  register(email: String!, password: String!): Account! @resolver
+  login(email: String!, password: String!): String! @resolver
+}
+

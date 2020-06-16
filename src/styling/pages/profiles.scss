@@ -1,0 +1,72 @@
+.profiles {
+    display: flex;
+    width: 100%;
+    min-height: 500px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.no-results-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+}
+
+.no-results-image {
+    height: 200px;
+    margin-top: 50px;
+}
+
+.no-results-text {
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 300;
+}
+
+.no-results-subtext {
+    font-size: 19px;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 300;
+}
+
+.spacer {
+    display: flex;
+    flex: 1 1 auto;
+}
+.previous-button, .next-button{
+    background-color: rgba(0,0,0,0.8);
+    color: rgba(255,255,255,0.8);
+    padding: 7px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 20px;
+    margin: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    cursor: pointer;
+}
+
+
+.search {
+    width: 30%;
+    display: flex;
+}
+
+.searchTerm {
+    width: 100%;
+    border: 3px solid #00B4CC;
+    border-right: none;
+    padding: 5px;
+    margin: 20px;
+    height: 20px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9DBFAF;
+}
+
+.searchTerm:focus{
+    color: #00B4CC; 
+}

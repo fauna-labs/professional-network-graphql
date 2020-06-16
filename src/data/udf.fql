@@ -1,0 +1,25 @@
+// Call with:
+// Call(Function('login'), '<useremail>', '<userpassworrd>')
+
+Query(Lambda(['email', 'password'],
+    Select(
+      ['secret'],
+      Login(Match(Index('accountsByEmail'), Var('email')), {
+        password: Var('password')
+      })
+    )
+))
+
+
+
+// Call with:
+// Call(Function('login'), '<useremail>', '<userpassworrd>')
+
+Query(Lambda(['email', 'password'],
+    Create(Collection('Account'), {
+      credentials: { password: Var('password') },
+      data: {
+        email: Var('email')
+      }
+  })
+))
