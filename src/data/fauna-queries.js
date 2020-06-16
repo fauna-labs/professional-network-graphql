@@ -5,19 +5,18 @@ let secret = process.env.REACT_APP_BOOTSTRAP_FAUNADB_KEY
 
 const getProfiles = async function(toLoad, prevBefore, prevAfter) {
   let cursor = ``
-  if (toLoad === 'prev') {
+  if (toLoad === 'prev' && prevBefore) {
     cursor = `, _cursor: "${prevBefore}"`
-  } else if (toLoad === 'next') {
+  } else if (toLoad === 'next' && prevAfter) {
     cursor = `, _cursor: "${prevAfter}"`
   }
-
   const query = `
     query GetProfiles {
-      allProfiles(_size: 6) {
+      allProfiles(_size: 6 ${cursor}) {
         data {
-          _id
-          name
-          icon
+          _id,
+          name,
+          icon,
           skills {
             data {
               _id
@@ -31,7 +30,9 @@ const getProfiles = async function(toLoad, prevBefore, prevAfter) {
               name
             }
           }
-        }
+        },
+        after,
+        before
       }
     }
   `
