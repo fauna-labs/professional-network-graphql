@@ -2,6 +2,11 @@
 This project is an example application that was built specifically to do GraphQL demos and is definitely not a complete application yet. We aim to finish it and write complete example applications with GraphQL in the near future just like we did with the Fauna Query Language [here](https://css-tricks.com/rethinking-twitter-as-a-serverless-app/)
 In the meantime we'll release this simple demo since many users asked about it. 
 
+This repository was part of a workshop which you can watch here: https://www.youtube.com/watch?v=_kEDBitNbnY
+
+Or you can probably catch me (@databrecht) since I'm sure I will give it again as we recently did @ GraphQL Summit
+Or you can follow it in your free time by following the document here: https://docs.google.com/document/d/10HrtNsaQH0MBTsRKJIQldEr9XMiTLWkEsJ0HYEIrmSU/edit#
+
 ## What it shows
 This app shows how to set up a GraphQL endpoint in minutes and further goes into authentication with FaunaDB without a backend and implements some simple queries with pagination. 
 
@@ -94,4 +99,6 @@ type Mutation {
 
 Go to the GraphQL tab in the FaunaDB [dashboard](https://dashboard.fauna.com/) and click import schema and select the schema.gql file. 
 You now have a GraphQL endpoint and should get a playground to play around with it. 
+
+
 
