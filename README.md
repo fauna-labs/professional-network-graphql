@@ -95,5 +95,3 @@ type Mutation {
 Go to the GraphQL tab in the FaunaDB [dashboard](https://dashboard.fauna.com/) and click import schema and select the schema.gql file. 
 You now have a GraphQL endpoint and should get a playground to play around with it. 
 
-
-## Authentication
