@@ -11,7 +11,7 @@
     "faker": "^4.1.0",
     "faunadb": "^2.11.1",
     "graphql-request": "^1.8.2",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "node-sass": "^4.13.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
