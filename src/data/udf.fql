@@ -1,5 +1,5 @@
 // Call with:
-// Call(Function('login'), '<useremail>', '<userpassworrd>')
+// Call(Function('login'), '<useremail>', '<userpassword>')
 
 Query(Lambda(['email', 'password'],
     Select(
@@ -13,7 +13,7 @@ Query(Lambda(['email', 'password'],
 
 
 // Call with:
-// Call(Function('login'), '<useremail>', '<userpassworrd>')
+// Call(Function('register'), '<useremail>', '<userpassword>')
 
 Query(Lambda(['email', 'password'],
     Create(Collection('Account'), {
