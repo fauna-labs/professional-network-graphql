@@ -1,6 +1,5 @@
 const faker = require('faker')
 const faunadb = require('faunadb')
-const { Create, Collection } = faunadb.query
 const readline = require('readline-promise').default
 const fetch = require('node-fetch')
 
