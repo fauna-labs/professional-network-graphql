@@ -66,17 +66,21 @@ You now have a GraphQL endpoint and should get a playground to play around with 
 ### Run the setup scripts
 
 We have added scripts to set up all the security roles, collections, indexes to make this work. 
-The scripts are meant to get you started easily and to document the process. Take a peek in the scripts/setup.js script to see
-how this is setup. To run the script, create an Admin token on https://dashboard.fauna.com/ via the Security tab, copy the token
-and run: 
+The scripts are meant to get you started easily and to document the process. Take a peek in the scripts/setup.js script to see how this is setup. To run the script, create an Admin key on https://dashboard.fauna.com/ via the Security tab, copy the key's secret and run: 
 
-`yarn run setup`
+`npm run setup`
 
-The script will ask you for the token, paste it in when it does. 
+Paste the admin key's secret when prompted by the script. Do not use the admin key for anything other than the setup script. Admin keys are powerful and meant to manipulate all aspects of the database (create/drop collections/indexes/roles).
+
+The script creates a login key and outputs that key's secret. Copy the secret and place it in a .env.local file:
+`
+REACT_APP_BOOTSTRAP_FAUNADB_KEY=<YOUR FAUNA LOGIN KEY>
+`
 
 ### Update the UDFs
 When you use a @resolver, it will create a UDF stub for you but since a resolver is custom FQL code, that FQL can't be generated for you.
-Go to the Fauna dashboard again, click on Functions and then edit the code for the login function:
+
+Go to the Fauna dashboard again, click on Functions and then change the body of the *login* function to the following:
 
 ```
 Query(Lambda(['email', 'password'],
@@ -89,7 +93,7 @@ Query(Lambda(['email', 'password'],
 ))
 ```
 
-And the register function:
+Select the *register* function and update the body to the following:
 
 ```
 Query(Lambda(['email', 'password'],
@@ -102,19 +106,7 @@ Query(Lambda(['email', 'password'],
 ))
 ```
 
-The script will ask for the admin token, do not use the admin token for anything else than the setup script. 
-Admin tokens are powerful and meant to manipulate all aspects of the database (create/drop collections/indexes/roles)
-The script will give you a new token instead (a login token).
-Copy the token and place it in a .env.local file:
-`
-REACT_APP_BOOTSTRAP_FAUNADB_KEY=<YOUR FAUNA LOGIN KEY>
-`
-
 Note: make sure not to create the UDF before you upload the GraphQL schema, it has to be created with the GraphQL schema since this will include metadata for the UDF to set it up that it can be called from GraphQL.
 
 ## Run the project
-This project has been created with create-react-app and therefore has all the same commands such as 
-`yarn start`
-
-
-
+To run the project, enter `npm start` on the command line.
