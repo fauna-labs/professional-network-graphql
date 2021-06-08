@@ -5,14 +5,36 @@ let secret = process.env.REACT_APP_BOOTSTRAP_FAUNADB_KEY
 
 const getProfiles = async function(toLoad, prevBefore, prevAfter) {
   let cursor = ``
-  if (toLoad === 'prev') {
+  if (toLoad === 'prev' && prevBefore) {
     cursor = `, _cursor: "${prevBefore}"`
-  } else if (toLoad === 'next') {
+  } else if (toLoad === 'next' && prevAfter) {
     cursor = `, _cursor: "${prevAfter}"`
   }
-
   const query = `
-     ... to be filled in ...
+    query GetProfiles {
+      allProfiles(_size: 6 ${cursor}) {
+        data {
+          _id,
+          name,
+          icon,
+          skills {
+            data {
+              _id
+              name
+            }
+          }
+          projects
+          {
+            data {
+              _id
+              name
+            }
+          }
+        },
+        after,
+        before
+      }
+    }
   `
   return executeQuery(query).then(result => {
     if(result.errors){
@@ -36,7 +58,31 @@ const getProfilesBySkill = function(skill, toLoad, prevBefore, prevAfter) {
   }
 
   const query = `
-    ... to be filled in ... 
+  query GetProfilesBySkill {
+    skillsByName(_size: 6, name: "${skill}" ${cursor}){
+      data {
+        profiles { 
+          data { 
+            _id,
+            name,
+            icon,
+            skills {
+              data {
+                _id,
+                name
+              }
+            },
+            projects {
+              data {
+                _id,
+                name,
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   `
 
   return executeQuery(query).then(result => {
@@ -68,16 +114,28 @@ const getProfilesBySkill = function(skill, toLoad, prevBefore, prevAfter) {
  * Once Login is called, it will return a secret which will be used further on to query.
  */
 const register = function(email, password) {
-  const query = ` ... to be filled in ... `
+  const query = `mutation CallRegister {
+    register (
+      email: "${email}"
+      password: "${password}"
+    )
+    {
+      _id
+    }
+  }`
   return executeQuery(query).then(result => {
     console.log(result)
-
     return result.data.register
   })
 }
 
 const login = async function(email, password) {
-  const query = ` ... to be filled in ... `
+  const query = `mutation CallLogin {
+    login (
+      email: "${email}"
+      password: "${password}"
+    )
+  }`
   return executeQuery(query).then(result => {
     console.log('login result', result)
     secret = result.data.login
